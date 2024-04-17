@@ -1,0 +1,435 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: azure;
+}
+header {
+    background-color: #333;
+    padding: 10px;
+    align-items: center;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 120px;
+}
+
+header .logo {
+   margin-top: 110px;
+   padding: 25px;
+}
+header .logo img {
+    height: 160px;
+    width: 230px;
+    border-radius: 20px 20px 0px 0px;
+    border:1px solid #333;
+    box-shadow: 10px 10px 15px #000;
+}
+header .user_image_logo {
+    margin-top: 220px;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+header .user_image_logo img {
+    height: 150px;
+    width: 150px;
+    border-radius:50%;
+    border:1px solid #000;
+    box-shadow: 0px 10px 25px #000;
+}
+header .user_image_logo h2 {
+    font-size: 20px;
+    margin-top: 0px;
+}
+
+/*main */
+.main {
+    height: 100px;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+    background-color:#514b54;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.main ul {
+    display:flex;
+    list-style-type: none;
+    text-align:right;
+    font-size: 20px;
+    overflow:auto;
+}
+.main ul::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;  
+}
+.main ul a li {
+    padding:10px;
+    margin-right:20px;
+    margin-left: 0px;
+    box-shadow: 5px 10px 10px #000;
+    background-color:azure;
+    color: #000;
+    border-radius: 5px;
+    transition: padding 0.3s ease-in-out;
+}
+.main ul a li:hover {
+    padding: 15px;
+    background-color: #fff;
+}
+.main ul a {
+    text-decoration: none;
+}
+
+.main .user_image {
+    height: 60px;
+    width: 60px;
+    padding:1px;
+    box-shadow: 5px 10px 15px #000;
+    background-color: aqua;
+    color: #000;
+    border-radius: 25px;
+    transition: padding 0.3s ease-in-out;
+    margin-top: 15px;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+.main .user_image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+.main .user_image:hover {
+    padding: 5px;
+    background-color: #fff;
+}
+.main .user_login_required {
+    padding:10px;
+    margin-right:20px;
+    margin-left: 0px;
+    box-shadow: 5px 10px 10px #000;
+    background-color:azure;
+    color: #000;
+    border-radius: 5px;
+    transition: padding 0.3s ease-in-out;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+.main .user_login_required:hover {
+    padding: 15px;
+    background-color: #fff;
+}
+
+/*login*/
+.container-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.container {
+    height: auto;
+    width: 300px;
+    max-width: 400px;
+    align-items: center;
+    background-color: #fff;
+    padding: 40px;
+    padding-right: 50px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    position:relative;
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+.login-form h2{
+    font-size: 20px;
+    margin-top: 2px;
+    margin-bottom: 35px;
+    text-align: center;
+} 
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color:#b0a8e3;
+    color:#252525;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 40%;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color:#333;
+    color: #fff;
+}
+
+/* auctions */
+
+.filter_box {
+    height: 80px;
+    width: 90%;
+    max-width: fit-content;
+    display: flex;
+    margin-left:5%;
+    margin-bottom: 30px;
+    background-color: #333;
+    border-radius: 10px;
+    padding:10px;
+    overflow: auto;
+}
+.filter_box::-webkit-scrollbar {
+    display: none;
+}
+.filter_box #filter, .filter_box input[type="reset"]{
+    margin: 10px;
+    height: 40px;
+    width: 120px;
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+.product_results {
+    height: auto;
+    width: 93%;
+    margin-left:3%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    padding: 10px;
+    background-color: #fff;
+}
+.product_results a .product {
+    width: calc(33.33%-0);
+    margin: 10px;
+    text-align: center;
+    background-color:beige;
+    border: 1px solid #333;
+    padding: 0px;
+    transition: padding 0.3s ease-in-out;
+}
+.product_results a .product:hover {
+    padding: 5px;
+    border: 3px solid #333;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.product_results a .product img {
+    width: 200px;
+    height: 200px;
+}
+.product_results  a .product h3 {
+    font-size: 20px;
+    text-align:center;
+}
+.product_results a {
+    text-decoration: none;
+    color: #000;
+}
+
+/*auction */
+.auction_main {
+    height: 50px;
+    width: 90%;
+    max-width: fit-content;
+    margin-left: 5%;
+    background-color: #787575;
+    border-radius: 10px;
+    display: flex;
+    padding: 8px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+.auction_main h1 {
+   margin: 10px;
+   color: #252525; 
+}
+.auction_main h3 {
+    color: #fff;
+    margin-top: 1px;
+    font-size: 20px;
+    padding: 15px;
+}
+.product_details {
+    height:500px;
+    width: 95%;
+    max-width:fit-content;
+    max-height: fit-content;
+    margin-left: 3%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);   
+    background-color: #fff;
+}
+.product_center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product_details img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+}
+.product_user_details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.product_user_details img {
+    height: 100px;
+    width: 100px;
+}
+.product_user_name_details {
+    margin-left: 5%;
+    margin-top: 0px;
+}
+.product_user_name_details h1 {
+    font-size: 28px;
+}
+.product_user_name_details h3 {
+    font-size: 15px;
+    color:tomato;
+}
+
+.product_user_name_details a{
+    text-decoration: none;
+}
+.product_user_name_details h3:hover{
+    text-decoration: underline;
+    box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.2);
+}
+.info_button {
+    height: 50px;
+    width: 120px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+.info_button:hover{
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.bid_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.current_bid_details {
+    display: flex;
+}
+.bid_details,.current_bid {
+    margin-top: 0;
+    margin-left: 10px;
+    margin-right: 20px;
+
+}
+.bid_details h3 , .current_bid h3 {
+    font-size: 26px;
+    font-family: monospace;
+}
+.bid_details h4 , .current_bid h4 {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 22px;
+    margin-top: 0px;
+}
+.bid_details h4 {
+    color: red;
+}
+.current_bid h4 {
+    color: green;
+}
+.new_bid {
+    height: 80px;
+    width: 90%;
+    border: 1px solid #333;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+}
+.new_bid input[type="text"] {
+    height: 15px;
+    width: 120px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid #000;
+    font-size: 20px;
+    color: #000;
+}
+
+.bid_button {
+    height: 50px;
+    width: 100px;
+    margin: 15px;
+    margin-left: 40px;
+    background-color: red;
+    color: #fff;
+}
+.bid_button:hover {
+    background-color: green;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.auction_activity {
+    width: 95%;
+    margin-left: 2%;
+    margin-bottom: 20px;
+}
+.user_bid_activity {
+    display: flex;
+    height: 50px;
+    width: 50%;
+    margin-left: 5%;
+    background-color:snow;
+    justify-content: space-between;
+    border-radius: 2px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #000;
+    margin-bottom: 3px;
+}
+.user_bid_activity a {
+    text-decoration: none;
+    color:#000;
+    margin-left: 10px;
+}
+.user_bid_activity h4 {
+    color:goldenrod;
+    font-size: 20px;
+    padding: 8px;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+.user_bid_activity a:hover {
+    text-transform: capitalize;
+    padding: 2px;
+}

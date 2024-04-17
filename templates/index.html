@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+   {% block title %}
+        Auction-site
+   {% endblock title %}
+        
+   {% block content %}
+    <div class="main">
+        <ul>
+            <a href=""><li>Home</li></a><br>
+            <a href="#"><li>Auctions</li></a>
+            <a href=""><li>Home</li></a><br>
+            <a href="#"><li>Auctions</li></a>
+        </ul>
+        {% if login %}
+                <a href="/user"><div class="user_image">
+                               <img src="https://avatars.githubusercontent.com/u/67720912?v=4">
+                            </div>
+                </a>
+        {% else %}        
+                <a href="/login"><div class="user_login_required">
+                        Login | Register
+                        </div>
+                </a>
+        {% endif %}    
+        {% endblock content %}        
+    </div>

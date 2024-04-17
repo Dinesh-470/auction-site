@@ -1,0 +1,24 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+           {% endblock title %}
+    </title>
+    <link rel="icon" href={% static "logo/logo.png" %}>
+    <link rel="stylesheet" href={% static "styles.css" %}>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src= {% static "logo/logo.png" %} alt="Auction Logo">
+        </div>
+        {%block user %}
+        
+        {% endblock user %}
+    </header>
+    {% block content %}
+    
+    {% endblock content %}
+</body>
