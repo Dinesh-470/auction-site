@@ -12,3 +12,6 @@ class User(models.Model):
 class user_images(models.Model):
     user_name = models.ForeignKey(User, on_delete=models.CASCADE)
     user_image = models.ImageField('/media',None)
+
+class Product(models.Model):
+    pass
