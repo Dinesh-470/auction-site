@@ -1,6 +1,8 @@
 from django.shortcuts import redirect
 from django.template import loader
 from django.http import HttpResponse
+from . import models
+from django.conf import settings
 # Create your views here.
 def index(request):
     template = loader.get_template('index.html')
@@ -61,16 +63,28 @@ def auction(request,auction_name):
     return HttpResponse(template.render(context,request))
 
 def user(request):
+    user_details = models.user.objects.get(pk="dinesh")
     template = loader.get_template('user.html')
     context = {
+        'name' : user_details.user_name,
+        'image' : user_details.user_image,
     }
     return HttpResponse(template.render(context,request))
 
 def user_inspect(request,user_name):
     return HttpResponse(user_name)
 
-def user_login():
-    pass
-
-def user_regisster():
+def user_login(request):
+    if request.method == 'POST':
+        user_name = request.POST.get('username')
+        password = request.POST.get('password')
+        if user_name == 'dinesh' and password == 'dinesh':
+            settings.LOGGED_IN =True
+            return redirect('/')
+        else:
+            return redirect('/login/',message="user not found")
+    else:
+        return HttpResponse("error")
+        
+def user_register():
     pass

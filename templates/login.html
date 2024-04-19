@@ -6,8 +6,9 @@
    {% block content %}
         <div class="container-center">
             <div class="container">
-                <form class="login-form" method="post" action="">
+                <form class="login-form" method="post" action="/user/login/">
                     <h2>LOGIN</h2>
+                    {% csrf_token %}
                     <div class="form-group">
                         <label for="username">Email:</label>
                         <input type="text" id="username" name="username" required>
@@ -20,5 +21,4 @@
                 </form>
             </div>
         </div>
-        
     {% endblock content %}      

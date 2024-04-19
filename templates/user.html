@@ -2,11 +2,11 @@
    {% block title %}
         Auction-site
    {% endblock title %}
-        
+{% load static %}     
     {% block user %}
         <div class="user_image_logo">
-            <img src="https://avatars.githubusercontent.com/u/67720912?v=4">
-            <h2>DINESHREDDY</h2>
+            <img src='/media/user_images/{{image}}'>
+            <h2>{{name}}</h2>
         </div>
     {% endblock user %}  
 
