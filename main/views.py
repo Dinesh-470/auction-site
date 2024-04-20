@@ -31,46 +31,6 @@ def register(request):
     }
     return HttpResponse(template.render(context,request))
 
-def auctions(request):
-    data = models.Product.objects.all()
-    image_set = {}
-    for dt in data:
-        image = models.Product_images.objects.filter(product_id=dt.product_id).first()
-        image_set[dt] = image
-    template = loader.get_template('auctions.html')
-    print(data,image_set)
-    context = {
-        'data' : image_set,
-    }
-    return HttpResponse(template.render(context,request))
-
-def auction(request,auction_name):
-    data = models.Product.objects.get(product_id=auction_name)
-    image = models.Product_images.objects.filter(product_id=auction_name).first()
-    bidding = models.bidding.objects.filter(product_id=auction_name).all()
-
-    template = loader.get_template('auction.html')
-    context = {
-        'product_id':auction_name,
-        'data' : data,
-        'image' : image,
-        'activity' : bidding,
-    }
-    return HttpResponse(template.render(context,request))
-
-def user(request):
-    if settings.LOGGED_IN == False:
-        return redirect('/login')
-    user_details = models.users.objects.get(user_name=settings.USER_NAME)
-    template = loader.get_template('user.html')
-    context = {
-        'user' : user_details,
-    }
-    return HttpResponse(template.render(context,request))
-
-def user_inspect(request,user_name):
-    pass
-
 def user_login(request):
     if request.method == 'POST':
         user_name = request.POST.get('username')
@@ -120,3 +80,43 @@ def user_register(request):
        else:
             message = "user_name is too short atleast 8 charaters"     
        return HttpResponse(message)
+   
+def auctions(request):
+    data = models.Product.objects.all()
+    image_set = {}
+    for dt in data:
+        image = models.Product_images.objects.filter(product_id=dt.product_id).first()
+        image_set[dt] = image
+    template = loader.get_template('auctions.html')
+    context = {
+        'data' : image_set,
+    }
+    return HttpResponse(template.render(context,request))
+
+def auction(request,auction_name):
+    data = models.Product.objects.get(product_id=auction_name)
+    image = models.Product_images.objects.filter(product_id=auction_name).first()
+    bidding = models.bidding.objects.filter(product_id=auction_name).all()
+
+    template = loader.get_template('auction.html')
+    context = {
+        'product_id':auction_name,
+        'data' : data,
+        'image' : image,
+        'activity' : bidding,
+    }
+    return HttpResponse(template.render(context,request))
+
+def user(request):
+    if settings.LOGGED_IN == False:
+        return redirect('/login')
+    user_details = models.users.objects.get(user_name=settings.USER_NAME)
+    template = loader.get_template('user.html')
+    context = {
+        'user' : user_details,
+    }
+    return HttpResponse(template.render(context,request))
+
+
+def user_inspect(request,user_name):
+    pass
