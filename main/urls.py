@@ -11,4 +11,5 @@ urlpatterns = [
     path('user/',views.user,name="user"),
     path('user/<str:user_name>',views.user_inspect,name="user_inspect"),
     path('user/login/',views.user_login),
+    path('user/register/',views.user_register),
 ]

@@ -7,13 +7,11 @@
     <div class="main">
         <ul>
             <a href=""><li>Home</li></a><br>
-            <a href="#"><li>Auctions</li></a>
-            <a href=""><li>Home</li></a><br>
-            <a href="#"><li>Auctions</li></a>
+            <a href="/auctions"><li>Auctions</li></a>
         </ul>
         {% if login %}
                 <a href="/user"><div class="user_image">
-                               <img src="https://avatars.githubusercontent.com/u/67720912?v=4">
+                               <img src='/media/{{user.image}}'>
                             </div>
                 </a>
         {% else %}        

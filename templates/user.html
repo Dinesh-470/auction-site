@@ -5,8 +5,8 @@
 {% load static %}     
     {% block user %}
         <div class="user_image_logo">
-            <img src='/media/user_images/{{image}}'>
-            <h2>{{name}}</h2>
+            <img src='/media/{{user.image}}'>
+            <h2>{{user.full_name}}</h2>
         </div>
     {% endblock user %}  
 

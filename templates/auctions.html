@@ -33,11 +33,11 @@
         <input type="reset">
     </div>
     <div class="product_results">
-        {% for dt in data%}
-        <a href="#">
+        {% for product, images in data.items %}
+        <a href="/auction/{{product.product_id}}">
             <div class="product">
-                <img src={% static "logo/logo.png" %}>
-                <h3>price</h3>
+                <img src='/media/{{images.product_images}}'>
+                <h3>{{product.current_bid}}</h3>
             </div>
         </a>
         {% endfor %}

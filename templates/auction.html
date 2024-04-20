@@ -10,13 +10,13 @@
     </div>
     <div class="product_center">
         <div class="product_details" id="product_details">
-            <img src={% static "logo/logo.png" %}>
+            <img src='/media/{{image.product_images}}'>
         </div>
     </div>
     <div class="product_user_details">
         <div class="product_user_name_details">
             <h1>User_name</h1>
-            <a href="#"><h3>d{{user_name}}</h3></a>
+            <a href="#"><h3>{{data.user_name}}</h3></a>
         </div>
         <button type="button" class="info_button">Description</button>
     </div>
@@ -24,15 +24,15 @@
         <div class="current_bid_details">
             <div class="bid_details">
                 <h3>Baseprice</h3>
-                <h4>{{base_price}}</h4>
+                <h4>{{data.product_price}}</h4>
             </div>
             <div class="current_bid">
                 <h3>Current_bid</h3>
-                <h4>{{current_bid}}</h4>
+                <h4>{{data.current_bid}}</h4>
             </div>
         </div>
         <div class="new_bid">
-            <h2 id="baseprice">{{current_bid}}+</h2><input type="text" id="enter_amount" name="amount" placeholder="Your Bid"><h2 id="new_amount">={{current_bid}}</h2><button type="button" class="bid_button">Bid</button>
+            <h2 id="baseprice">{{data.current_bid}}+</h2><input type="text" id="enter_amount" name="amount" placeholder="Your Bid"><h2 id="new_amount">={{data.current_bid}}</h2><button type="button" class="bid_button">Bid</button>
         </div>
     </div>
     <div class="auction_activity">
@@ -40,7 +40,7 @@
         {% for data in activity %}
             <div class="user_bid_activity">
                 <a href="#"><h3>{{data.user_name}}</h3></a>
-                <h4>{{data.price}}</h4>
+                <h4>{{data.for_price}}</h4>
             </div>
         {% endfor %}
     </div>
