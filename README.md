@@ -1,12 +1,10 @@
 <h1>Auction_site</h1>
-<hr>
-<p></p>
 
 <h2>usage:</h2>
-<code>python manage.py makemigrations main</code>
-<code>python manage.py migrate</code>
-<code>python manage.py runserver</code>
-<br>
+<code>python manage.py makemigrations main</code><br>
+<code>python manage.py migrate</code><br>
+<code>python manage.py runserver</code><br>
+<hr>
 <h4>index page</h4>
 <img src=/media/files/1.png>
 <h4>user page</h4>
