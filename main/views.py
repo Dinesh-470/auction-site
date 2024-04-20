@@ -119,4 +119,21 @@ def user(request):
 
 
 def user_inspect(request,user_name):
-    pass
+    try:
+        user_details = models.users.objects.get(user_name=user_name)
+    except:
+        return redirect('/404/')
+    context = {
+        'user_details' : user_details,
+        'error_message' : 'user not found',
+        } 
+    template = loader.get_template('user_view.html')
+    
+    return HttpResponse(template.render(context,request))
+
+def error(request):
+    template = loader.get_template('404.html')
+    context = {
+        'message' : 'user not found'
+    }
+    return HttpResponse(template.render(context,request))

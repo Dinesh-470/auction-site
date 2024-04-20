@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+   {% block title %}
+        Auction-site
+   {% endblock title %}
+{% load static %}    
+    {% if user %}
+        {% block user %}
+            <div class="user_image_logo">
+                <img src='/media/{{user_details.image}}'>
+                <h2>{{user_details.full_name}}</h2>
+            </div>
+        {% endblock user %}  
+
+        {% block content %}
+            
+        {% endblock content %}
+    {% else %}
+        {{error_message}}
+    {% endif %}
+</body>
+</html>
