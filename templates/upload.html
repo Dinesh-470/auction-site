@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+   {% block title %}
+        Auction-site
+   {% endblock title %}
+        
+   {% block content %}
+        <div class="container-center">
+            <div class="container">
+                <h1>upload your product</h1>
+                <form class="product_upload" method="POST" action="/user/upload/done" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="product_image" id="image" placeholder="image" required><br>
+                    <input type="text" name="product_name" placeholder="name for product" required><br>
+                    <input type="text" name="product_description" placeholder="Description" required><br>
+                    <input type="text" name="product_price" placeholder="price" required><br>
+                    <input type="submit" value="Upload">
+                </form>
+            </div>
+        </div>
+    {% endblock content %}    
+</body>

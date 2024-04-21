@@ -15,7 +15,7 @@ class Product(models.Model):
     user_name = models.ForeignKey(users,on_delete=models.CASCADE)
     product_id = models.CharField(max_length=30,primary_key=True)
     product_name = models.TextField()
-    product_description = models.TextField()
+    product_description = models.TextField(default=None,null=True)
     product_price = models.IntegerField()
     current_bid = models.IntegerField()
     def __str__(self) -> str:

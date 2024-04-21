@@ -137,3 +137,63 @@ def error(request):
         'message' : 'user not found'
     }
     return HttpResponse(template.render(context,request))
+
+def product_upload(request):
+    template = loader.get_template('upload.html')
+    context = {
+    }
+    return HttpResponse(template.render(context,request))
+
+import random
+import string
+
+def product_id_generator(size=10, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
+    product_id = ''.join(random.choice(chars) for _ in range(size))
+    try:
+        product = models.Product.objects.get(product_id=product_id)
+    except:
+        product = None    
+    if product == None:
+        product_id = product_id
+        return product_id
+    else:
+        product_id_generator()
+
+def product_upload_done(request):
+    if request.method == 'POST':
+        user_name = models.users.objects.get(user_name=settings.USER_NAME)
+        product_name = request.POST.get('product_name')
+        product_description = request.POST.get('product_description')
+        product_price = request.POST.get('product_price')
+        product_image = request.FILES.get('product_image')
+        product_id = product_id_generator()
+        
+        product = models.Product(
+            user_name = user_name,
+            product_id = product_id,
+            product_name = product_name,
+            product_description = product_description,
+            product_price = product_price,
+            current_bid = product_price,
+        )
+        product_images = models.Product_images(
+            product_id = product,
+            product_images = product_image,
+        )
+        product.save()
+        product_images.save()
+        return redirect('/user/my_products')
+    else:
+        return HttpResponse('error')    
+        
+def my_products(request):
+    template = loader.get_template('my_products.html')
+    products = models.Product.objects.filter(user_name=settings.USER_NAME).all()
+    total_set = {}
+    for product in products:
+        image = models.Product_images.objects.filter(product_id=product.product_id).first()
+        total_set[product] = image
+    context = {
+         'data' : total_set,    
+    }
+    return HttpResponse(template.render(context,request))

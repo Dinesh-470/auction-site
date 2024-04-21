@@ -433,3 +433,20 @@ button:hover {
     text-transform: capitalize;
     padding: 2px;
 }
+
+.product_upload input {
+    padding: 10px;
+    margin: 5px;
+}
+.product_upload input[type="submit"] {
+    margin: 2px;
+    text-align: center;
+    color: #fff;
+    background-color:#000;
+    border-radius: 20px;
+}
+.product_upload input[type="submit"]:hover {
+    background-color: #fff;
+    color: #252525;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}

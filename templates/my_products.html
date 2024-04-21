@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+   {% block title %}
+        Auction-site
+   {% endblock title %}
+        
+   {% block content %}
+        <div class="product_results">
+            {% for product, images in data.items %}
+                <a href="/auction/{{product.product_id}}">
+                    <div class="product">
+                        <img src='/media/{{images.product_images}}'>
+                        <h3>{{product.current_bid}}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% endblock content %}
+</body>

@@ -18,7 +18,7 @@
             <h1>User_name</h1>
             <a href="#"><h3>{{data.user_name}}</h3></a>
         </div>
-        <button type="button" class="info_button">Description</button>
+        <button type="button" class="info_button" id="description">Description</button>
     </div>
     <div class="bid_box">
         <div class="current_bid_details">
@@ -45,5 +45,6 @@
         {% endfor %}
     </div>
     {% endblock content %}
+    <script src={% static "js/description.js" %}>
 </body>
 </html>
