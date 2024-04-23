@@ -6,11 +6,17 @@ from django.conf import settings
 # Create your views here.
 def index(request):
     logged_in = True if settings.LOGGED_IN else False
-    
+    product= models.Product.objects.order_by('-num_of_bids')[:10]
+    data = {}
+    for dt in product:
+        image = models.Product_images.objects.filter(product_id=dt.product_id).first()
+        data[dt] = image
     template = loader.get_template('index.html')
     context = {
         'login' : logged_in,
+        'data' : data,
     }
+    print(data)
     if logged_in:
         user_name = settings.USER_NAME 
         user = models.users.objects.get(user_name=user_name)
@@ -100,7 +106,6 @@ def auction(request,auction_name):
 
     template = loader.get_template('auction.html')
     context = {
-        'product_id':auction_name,
         'data' : data,
         'image' : image,
         'activity' : bidding,

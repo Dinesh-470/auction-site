@@ -18,6 +18,7 @@ class Product(models.Model):
     product_description = models.TextField(default=None,null=True)
     product_price = models.IntegerField()
     current_bid = models.IntegerField()
+    num_of_bids = models.IntegerField(default=0)
     def __str__(self) -> str:
         return self.product_id
     

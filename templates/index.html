@@ -2,24 +2,39 @@
    {% block title %}
         Auction-site
    {% endblock title %}
-        
+{% load static %}      
    {% block content %}
-    <div class="main">
-        <ul>
-            <a href=""><li>Home</li></a><br>
-            <a href="/auctions"><li>Auctions</li></a>
-        </ul>
-        {% if login %}
-                <a href="/user"><div class="user_image">
-                               <img src='/media/{{user.image}}'>
-                            </div>
-                </a>
-        {% else %}        
-                <a href="/login"><div class="user_login_required">
-                        Login | Register
-                        </div>
-                </a>
-        {% endif %}    
-        
-        {% endblock content %}        
-    </div>
+        <div class="main">
+                <ul>
+                        <a href=""><li>Home</li></a><br>
+                        <a href="/auctions"><li>Auctions</li></a>
+                </ul>
+                {% if login %}
+                        <a href="/user"><div class="user_image">
+                                <img src='/media/{{user.image}}'>
+                                </div>
+                        </a>
+                {% else %}        
+                        <a href="/login"><div class="user_login_required">
+                                Login | Register
+                                </div>
+                        </a>
+                {% endif %}
+        </div>
+        <div class="index_auctions">
+                <div class="auction_head">
+                    <h2>Top-Auction</h2>
+                    <a href="/auctions/"><p>see all-->></p></a>
+                </div>
+                <div class="auction_body">
+                        {% for product, images in data.items%}
+                                <a href="/auction/{{product.product_id}}">
+                                        <div class="product">
+                                        <img src='/media/{{images.product_images}}'>
+                                        <h3>{{product.current_bid}}</h3>
+                                        </div>
+                                </a>
+                        {% endfor %}
+                </div>
+        </div>
+    {% endblock content %}   

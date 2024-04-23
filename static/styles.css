@@ -450,3 +450,51 @@ button:hover {
     color: #252525;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
+/* auctions in index */
+.index_auctions {
+    height: auto;
+    width: 95%;
+    max-width:fit-content;
+    margin-left: 2%;
+    margin-top: 20px;
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.index_auctions .auction_head {
+    display: flex;
+    justify-content: space-between;  
+}
+.index_auctions .auction_head h2 {
+    margin: 20px;
+}
+.index_auctions .auction_head a {
+    margin: 20px;
+    text-decoration:underline;
+}
+.index_auctions .auction_body {
+    height: auto;
+    width: 100%;
+    display: flex;
+    overflow: auto;
+}
+.index_auctions .auction_body a .product{
+    margin: 10px;
+    text-align: center;
+    background-color:beige;
+    border: 1px solid #333;
+    padding: 0px;
+    transition: padding 0.3s ease-in-out;
+    border-radius: 10px;
+}
+.index_auctions .auction_body a .product:hover {
+    padding: 5px;
+    border: 3px solid #333;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.index_auctions .auction_body a .product img {
+    height: 200px;
+    width: 200px;
+    border-radius: 10px 10px 0px 0px;
+}
