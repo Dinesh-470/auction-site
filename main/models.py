@@ -25,11 +25,15 @@ class Product(models.Model):
 class Product_images(models.Model):
     product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
     product_images = models.ImageField(upload_to='product_images/')
+    def __str__(self) -> str:
+        return self.product_id.product_id
     
 class bidding(models.Model):
     product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
     user_name = models.ForeignKey(users,on_delete=models.CASCADE)
     for_price = models.IntegerField()
+    def __str__(self) -> str:
+        return f'{self.user_name.user_name} bidded for {self.product_id.product_id}'
     
 class user_activity(models.Model):
     user_name = models.ForeignKey(users,on_delete=models.CASCADE)

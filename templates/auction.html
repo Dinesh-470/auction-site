@@ -18,7 +18,7 @@
             <h1>User_name</h1>
             <a href="#"><h3>{{data.user_name}}</h3></a>
         </div>
-        <button type="button" class="info_button" id="description">Description</button>
+        <button class="info_button" id="description" onclick="myFunction()">Description</button>
     </div>
     <div class="bid_box">
         <div class="current_bid_details">
@@ -32,17 +32,16 @@
             </div>
         </div>
         <div class="new_bid">
-            <h2 id="baseprice">{{data.current_bid}}+</h2><input type="text" id="enter_amount" name="amount" placeholder="Your Bid"><h2 id="new_amount">={{data.current_bid}}</h2><button type="button" class="bid_button">Bid</button>
+            <h2 id="baseprice">{{data.current_bid}} +</h2><input type="number" id="enter_amount" name="amount" placeholder="Your Bid"><h2 id="new_amount"> = {{data.current_bid}}</h2><button type="button" class="bid_button">Bid</button>
         </div>
     </div>
     <div class="auction_activity">
         <h1>Activity</h1>
         {% for data in activity %}
             <div class="user_bid_activity">
-                <a href="#"><h3>{{data.user_name}}</h3></a>
+                <a href="/user/{{data.user_name}}"><h3>{{data.user_name}}</h3></a>
                 <h4>{{data.for_price}}</h4>
             </div>
         {% endfor %}
     </div>
     {% endblock content %}
-    <script src={% static "js/description.js" %}>

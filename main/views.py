@@ -3,6 +3,7 @@ from django.template import loader
 from django.http import HttpResponse
 from . import models
 from django.conf import settings
+from django.http import JsonResponse
 # Create your views here.
 def index(request):
     logged_in = True if settings.LOGGED_IN else False
@@ -16,7 +17,6 @@ def index(request):
         'login' : logged_in,
         'data' : data,
     }
-    print(data)
     if logged_in:
         user_name = settings.USER_NAME 
         user = models.users.objects.get(user_name=user_name)
@@ -102,7 +102,7 @@ def auctions(request):
 def auction(request,auction_name):
     data = models.Product.objects.get(product_id=auction_name)
     image = models.Product_images.objects.filter(product_id=auction_name).first()
-    bidding = models.bidding.objects.filter(product_id=auction_name).all()
+    bidding = models.bidding.objects.filter(product_id=auction_name).all()[::-1]
 
     template = loader.get_template('auction.html')
     context = {
