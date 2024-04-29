@@ -8,7 +8,9 @@
     </title>
     <link rel="icon" href={% static "logo/icon.jpg" %}>
     <link rel="stylesheet" href={% static "styles.css" %}>
-    <script src={% static "js/description.js" %}></script>
+    {% block js %}
+       
+    {% endblock js %}
 </head>
 <body>
     <header>

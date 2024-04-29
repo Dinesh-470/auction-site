@@ -10,10 +10,10 @@
                 <form class="product_upload" method="POST" action="/user/upload/done" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="file" name="product_image" id="image" placeholder="image" required><br>
-                    <input type="text" name="product_name" placeholder="name for product" required><br>
-                    <input type="text" name="product_description" placeholder="Description" required><br>
-                    <input type="text" name="product_price" placeholder="price" required><br>
-                    <input type="submit" value="Upload">
+                    <input type="text" name="product_name" placeholder="Name for product" required><br>
+                    <input type="text" name="product_price" placeholder="Price" required><br>
+                    <input type="text" name="product_description" placeholder="Description" required class="product_description_upload"><br>
+                    <input type="submit" value="Upload" align="center">
                 </form>
             </div>
         </div>

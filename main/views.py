@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from . import models
 from django.conf import settings
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def index(request):
     logged_in = True if settings.LOGGED_IN else False
@@ -202,3 +203,10 @@ def my_products(request):
          'data' : total_set,    
     }
     return HttpResponse(template.render(context,request))
+
+
+
+@csrf_exempt
+def user_api(request):
+    items = models.users.objects.all().values()
+    return JsonResponse(list(items), safe=False)

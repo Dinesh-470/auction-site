@@ -2,7 +2,13 @@
    {% block title %}
         Auction-site
    {% endblock title %}
-{% load static %}         
+
+{% load static %} 
+
+    {% block js %}
+        <script src={% static "js/description.js" %}></script>
+    {% endblock js %}
+
    {% block content %}
     <div class="auction_main">
         <h1>Product ID:</h1>
@@ -18,7 +24,13 @@
             <h1>User_name</h1>
             <a href="#"><h3>{{data.user_name}}</h3></a>
         </div>
-        <button class="info_button" id="description" onclick="myFunction()">Description</button>
+        <button class="info_button" id="description" onclick="show()">Description</button>
+        <div id="descriptionpop">
+            <div class="modal-content">
+              <span class="close" onclick="hide()">&times;</span>
+              <h2>{{data.product_description}}</h2>
+            </div>
+        </div>
     </div>
     <div class="bid_box">
         <div class="current_bid_details">

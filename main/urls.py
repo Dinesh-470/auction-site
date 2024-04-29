@@ -15,5 +15,7 @@ urlpatterns = [
     path('user/<str:user_name>',views.user_inspect,name="user_inspect"),
     path('user/login/',views.user_login),
     path('user/register/',views.user_register),
-    path('404/',views.error,name="error")
+    path('404/',views.error,name="error"),
+    
+    path('u/0/api/user_api',views.user_api,name="user_api"),
 ]
