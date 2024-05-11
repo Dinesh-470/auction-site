@@ -4,8 +4,7 @@ from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 from . import models
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from django.core import serializers
-# Create your views here.
+
 def index(request):
     logged_in = True if settings.LOGGED_IN else False
     product= models.Product.objects.order_by('-num_of_bids')[:10]
@@ -224,11 +223,9 @@ def new_bid(request):
         product.current_bid = int(bid)
         product.num_of_bids +=1
         product.save()
-        print("okk")
-        return JsonResponse("goog",safe=False)
+        return JsonResponse("bid done",safe=False)
     else:
         return HttpResponse('error')    
-
 
 
 

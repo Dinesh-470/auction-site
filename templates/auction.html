@@ -59,12 +59,13 @@
         </div>
     </div>
     <script>
-        const current_bid = parseInt('{{data.current_bid}}');
         function updateNewAmount() {
             let enteredAmount = parseInt(document.getElementById('enter_amount').value);
             if (isNaN(enteredAmount) || enteredAmount < 0) {
                 enteredAmount = 0;
               }
+            let current = document.getElementById('baseprice1');
+            let current_bid = parseInt(current.textContent);
             const newAmount = current_bid + enteredAmount;
             document.getElementById('new_amount').textContent = '= ' + newAmount;
             return newAmount;
@@ -77,6 +78,9 @@
                 new_amount : updateNewAmount(),
                 product_id : '{{data.product_id}}',
             };
+            let current = document.getElementById('baseprice1');
+            let current_bid = current.textContent;
+            console.log(current_bid);
             if (data.new_amount > current_bid) {
              fetch('bid/', {
                 method: 'POST',
@@ -89,10 +93,9 @@
                 if (response.redirected) {
                     window.location.href = response.url;
                 } else {
-                    const basePriceElement1 = document.getElementById('baseprice1');
-                    basePriceElement1.innerHTML = '';
+                    current.textContent = data.new_amount;
                     fetchData('{{data.product_id}}');
-                    document.getElementById('enter_amount').value = ''
+                    document.getElementById('enter_amount').value = '';
                 }
               });
             }else{
