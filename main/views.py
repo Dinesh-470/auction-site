@@ -1,10 +1,10 @@
 from django.shortcuts import redirect
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 from . import models
 from django.conf import settings
-from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
 # Create your views here.
 def index(request):
     logged_in = True if settings.LOGGED_IN else False
@@ -42,13 +42,16 @@ def user_login(request):
     if request.method == 'POST':
         user_name = request.POST.get('username')
         password = request.POST.get('password')
-        user = models.users.objects.get(user_name=user_name)
+        try:
+            user = models.users.objects.get(user_name=user_name)
+        except:
+            return redirect('/404/')    
         if password == user.password:
             settings.LOGGED_IN =True
             settings.USER_NAME = user.user_name
             return redirect('/')
         else:
-           return HttpResponse('user not found or password wrong.')
+           return HttpResponse('password wrong.')
     else:
         return HttpResponse("error")
         
@@ -89,7 +92,7 @@ def user_register(request):
        return HttpResponse(message)
    
 def auctions(request):
-    data = models.Product.objects.all()
+    data = models.Product.objects.all().order_by('-num_of_bids')
     image_set = {}
     for dt in data:
         image = models.Product_images.objects.filter(product_id=dt.product_id).first()
@@ -103,13 +106,10 @@ def auctions(request):
 def auction(request,auction_name):
     data = models.Product.objects.get(product_id=auction_name)
     image = models.Product_images.objects.filter(product_id=auction_name).first()
-    bidding = models.bidding.objects.filter(product_id=auction_name).all()[::-1]
-
     template = loader.get_template('auction.html')
     context = {
         'data' : data,
         'image' : image,
-        'activity' : bidding,
     }
     return HttpResponse(template.render(context,request))
 
@@ -204,9 +204,47 @@ def my_products(request):
     }
     return HttpResponse(template.render(context,request))
 
+import json
+def new_bid(request):
+    if request.method == 'POST':
+        logged_in = True if settings.LOGGED_IN else False
+        if not logged_in:
+            return HttpResponseRedirect('/login')
+        received_data = json.loads(request.body)
+        product_id = models.Product.objects.get(product_id = received_data['product_id'])
+        user_name = models.users.objects.get(user_name=settings.USER_NAME)
+        bid = received_data['new_amount']
+        new_bid = models.bidding(
+            product_id = product_id,
+            user_name = user_name,
+            for_price = int(bid)
+        )
+        new_bid.save() 
+        product = models.Product.objects.get(product_id = received_data['product_id'])
+        product.current_bid = int(bid)
+        product.num_of_bids +=1
+        product.save()
+        print("okk")
+        return JsonResponse("goog",safe=False)
+    else:
+        return HttpResponse('error')    
 
 
+
+
+#api
 @csrf_exempt
 def user_api(request):
     items = models.users.objects.all().values()
     return JsonResponse(list(items), safe=False)
+
+@csrf_exempt
+def bids_api(request,auction_name):
+    product = models.Product.objects.get(product_id = auction_name)
+    bidding = models.bidding.objects.filter(product_id=auction_name).all()[::-1]
+    bidding_list = [{'bid_amount': bid.for_price, 'bidder_name': bid.user_name.user_name} for bid in bidding]
+    data = {
+        'current_bid' : product.current_bid,
+        'bid' : bidding_list,
+    }
+    return JsonResponse(data)

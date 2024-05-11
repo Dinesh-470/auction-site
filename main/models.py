@@ -33,7 +33,7 @@ class bidding(models.Model):
     user_name = models.ForeignKey(users,on_delete=models.CASCADE)
     for_price = models.IntegerField()
     def __str__(self) -> str:
-        return f'{self.user_name.user_name} bidded for {self.product_id.product_id}'
+        return f'{self.user_name.user_name} bidded for {self.product_id.product_id} with {self.for_price}'
     
 class user_activity(models.Model):
     user_name = models.ForeignKey(users,on_delete=models.CASCADE)

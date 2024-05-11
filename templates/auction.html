@@ -7,6 +7,7 @@
 
     {% block js %}
         <script src={% static "js/description.js" %}></script>
+        <script src={% static "js/index.js" %}></script>
     {% endblock js %}
 
    {% block content %}
@@ -22,7 +23,7 @@
     <div class="product_user_details">
         <div class="product_user_name_details">
             <h1>User_name</h1>
-            <a href="#"><h3>{{data.user_name}}</h3></a>
+            <a href="/user/{{data.user_name}}"><h3>{{data.user_name}}</h3></a>
         </div>
         <button class="info_button" id="description" onclick="show()">Description</button>
         <div id="descriptionpop">
@@ -40,20 +41,67 @@
             </div>
             <div class="current_bid">
                 <h3>Current_bid</h3>
-                <h4>{{data.current_bid}}</h4>
+                <h4 id="baseprice">{{data.current_bid}}</h4>
             </div>
         </div>
         <div class="new_bid">
-            <h2 id="baseprice">{{data.current_bid}} +</h2><input type="number" id="enter_amount" name="amount" placeholder="Your Bid"><h2 id="new_amount"> = {{data.current_bid}}</h2><button type="button" class="bid_button">Bid</button>
+            {% csrf_token %}
+            <h2 id="baseprice1">{{data.current_bid}}</h2>
+            <h2>+</h2>
+            <input type="number" id="enter_amount" name="amount" placeholder="Your Bid">
+            <h2 id="new_amount"> = {{data.current_bid}}</h2>
+            <input type="submit" class="bid_button" id="new_amount_button" value="Bid Now">
         </div>
     </div>
     <div class="auction_activity">
         <h1>Activity</h1>
-        {% for data in activity %}
-            <div class="user_bid_activity">
-                <a href="/user/{{data.user_name}}"><h3>{{data.user_name}}</h3></a>
-                <h4>{{data.for_price}}</h4>
-            </div>
-        {% endfor %}
+        <div id="userBidActivity">
+        </div>
     </div>
+    <script>
+        const current_bid = parseInt('{{data.current_bid}}');
+        function updateNewAmount() {
+            let enteredAmount = parseInt(document.getElementById('enter_amount').value);
+            if (isNaN(enteredAmount) || enteredAmount < 0) {
+                enteredAmount = 0;
+              }
+            const newAmount = current_bid + enteredAmount;
+            document.getElementById('new_amount').textContent = '= ' + newAmount;
+            return newAmount;
+        }
+        document.getElementById('enter_amount').addEventListener('input', updateNewAmount);
+        
+        function new_bid() {
+            var csrf_token = '{{ csrf_token }}';
+            const data = {
+                new_amount : updateNewAmount(),
+                product_id : '{{data.product_id}}',
+            };
+            if (data.new_amount > current_bid) {
+             fetch('bid/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': csrf_token,
+                },
+                body: JSON.stringify(data)
+              }).then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                } else {
+                    const basePriceElement1 = document.getElementById('baseprice1');
+                    basePriceElement1.innerHTML = '';
+                    fetchData('{{data.product_id}}');
+                    document.getElementById('enter_amount').value = ''
+                }
+              });
+            }else{
+            console.log("no amount change");
+           }
+        };
+        document.getElementById('new_amount_button').addEventListener('click', new_bid);
+    </script>
+    <script>
+        fetchData('{{data.product_id}}');
+    </script>
     {% endblock content %}

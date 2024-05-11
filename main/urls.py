@@ -8,6 +8,7 @@ urlpatterns = [
     path('register/',views.register,name="register"),
     path('auctions/',views.auctions,name="auctions"),
     path('auction/<str:auction_name>',views.auction,name="auction"),
+    path('auction/bid/',views.new_bid,name="new_bid"),
     path('user/',views.user,name="user"),
     path('user/upload',views.product_upload,name="product_upload"),
     path('user/my_products',views.my_products,name="my_products"),
@@ -18,4 +19,5 @@ urlpatterns = [
     path('404/',views.error,name="error"),
     
     path('u/0/api/user_api',views.user_api,name="user_api"),
+    path('u/0/api/bids_api/<str:auction_name>',views.bids_api,name="user_api"),   
 ]
